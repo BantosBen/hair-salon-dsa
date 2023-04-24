@@ -54,6 +54,7 @@ int main()
 			tracker->run();
 		}
 		else if (choice == 9) {
+			cout << "\nThank you. Bye" << endl;
 			return 1;
 		}
 		else {
