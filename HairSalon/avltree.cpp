@@ -10,6 +10,11 @@ Schedule* AVLTree::getRoot() {
 	return root;
 }
 
+void AVLTree::setRoot(Schedule* m_root)
+{
+	root = m_root;
+}
+
 
 int AVLTree::getHeight(Schedule* node) {
 	if (node == nullptr) {
@@ -63,7 +68,7 @@ Schedule* AVLTree::insert(Schedule* node, string timeSlot, string employeeName) 
 	}
 	else {
 		cout << "Time slot already exists." << endl;
-		return node;
+		return nullptr;
 	}
 
 	node->height = 1 + max(getHeight(node->left), getHeight(node->right));
@@ -83,7 +88,6 @@ Schedule* AVLTree::insert(Schedule* node, string timeSlot, string employeeName) 
 		node->right = rotateRight(node->right);
 		return rotateLeft(node);
 	}
-
 	return node;
 }
 
@@ -172,6 +176,7 @@ Schedule* AVLTree::minValueNode(Schedule* node) {
 Schedule* AVLTree::search(string timeSlot) {
 	Schedule* current = root;
 	while (current != nullptr) {
+		cout << "Time Slot: " << current->timeSlot << endl;
 		if (timeSlot == current->timeSlot) {
 			return current;
 		}

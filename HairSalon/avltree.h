@@ -10,6 +10,7 @@ class AVLTree {
 public:
     AVLTree();
     Schedule* getRoot();
+    void setRoot(Schedule* m_root);
     Schedule* insert(Schedule* node,string timeSlot, string employeeName);
     Schedule* remove(Schedule* node,string timeSlot);
     Schedule* search(string timeSlot);

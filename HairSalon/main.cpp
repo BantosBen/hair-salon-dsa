@@ -8,6 +8,7 @@
 #include "sale_management.h"
 #include "waiting_list.h"
 #include "loyalty_program_mgt.h"
+#include "scheduler.h"
 
 using namespace std;
 
@@ -44,6 +45,10 @@ int main()
 			loyalty_program->run();
 		}
 		else if (choice == 7) {
+			Scheduler* scheduler = new Scheduler();
+			scheduler->run();
+		}
+		else if (choice == 9) {
 			return 1;
 		}
 		else {
@@ -56,12 +61,14 @@ void displayMainMenu() {
 	cout << "=========================" << endl;
 	cout << "  HAIR SALON MANAGEMENT" << endl;
 	cout << "=========================" << endl;
-	cout << "1. Customer Management" << endl;
-	cout << "2. Appointment Scheduling" << endl;
-	cout << "3. Inventory Management" << endl;
-	cout << "4. Sales Management" << endl;
-	cout << "5. Waiting List" << endl;
-	cout << "6. Loyalty Program" << endl;
-	cout << "7. Exit" << endl;
-	cout << ">";
+	cout << "\t1. Customer Management" << endl;
+	cout << "\t2. Appointment Scheduling" << endl;
+	cout << "\t3. Inventory Management" << endl;
+	cout << "\t4. Sales Management" << endl;
+	cout << "\t5. Waiting List" << endl;
+	cout << "\t6. Loyalty Program" << endl;
+	cout << "\t7. Employee Schedule" << endl;
+	cout << "\t8. Employee Schedule" << endl;
+	cout << "\t9. Exit" << endl;
+	cout << "\t>";
 }

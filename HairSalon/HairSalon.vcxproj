@@ -162,6 +162,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="inventory_manager.cpp" />
     <ClCompile Include="sale_management.cpp" />
+    <ClCompile Include="scheduler.cpp" />
     <ClCompile Include="waiting_list.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +180,7 @@
     <ClInclude Include="sale.h" />
     <ClInclude Include="sale_management.h" />
     <ClInclude Include="schedule.h" />
+    <ClInclude Include="scheduler.h" />
     <ClInclude Include="waiting.h" />
     <ClInclude Include="waiting_list.h" />
   </ItemGroup>
