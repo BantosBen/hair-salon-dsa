@@ -161,6 +161,7 @@
     <ClCompile Include="loyalty_program_mgt.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="inventory_manager.cpp" />
+    <ClCompile Include="performance_tracker.cpp" />
     <ClCompile Include="sale_management.cpp" />
     <ClCompile Include="scheduler.cpp" />
     <ClCompile Include="waiting_list.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="inventory_manager.h" />
     <ClInclude Include="loyalty_program_mgt.h" />
     <ClInclude Include="node.h" />
+    <ClInclude Include="performance_tracker.h" />
     <ClInclude Include="sale.h" />
     <ClInclude Include="sale_management.h" />
     <ClInclude Include="schedule.h" />

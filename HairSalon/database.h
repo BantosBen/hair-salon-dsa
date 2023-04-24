@@ -13,6 +13,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <map>
 
 
 using namespace std;
@@ -40,4 +41,7 @@ public:
 	void saveScheduleDataToFile(AVLTree& tree, const string& filename);
 	void loadScheduleDataFromFile(AVLTree& tree, const string& filename);
 	void saveScheduleDataToFileHelper(Schedule* node, ofstream& outfile);
+
+	void saveEmployeeMetricsToFile(map<string, double>& employeeMetrics, const string& fileName);
+	void loadEmployeeMetricsFromFile(map<string, double>& employeeMetrics, const string& fileName);
 };

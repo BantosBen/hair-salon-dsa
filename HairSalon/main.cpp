@@ -9,6 +9,7 @@
 #include "waiting_list.h"
 #include "loyalty_program_mgt.h"
 #include "scheduler.h"
+#include "performance_tracker.h"
 
 using namespace std;
 
@@ -48,6 +49,10 @@ int main()
 			Scheduler* scheduler = new Scheduler();
 			scheduler->run();
 		}
+		else if (choice == 8) {
+			PerformanceTracker* tracker = new PerformanceTracker();
+			tracker->run();
+		}
 		else if (choice == 9) {
 			return 1;
 		}
@@ -68,7 +73,7 @@ void displayMainMenu() {
 	cout << "\t5. Waiting List" << endl;
 	cout << "\t6. Loyalty Program" << endl;
 	cout << "\t7. Employee Schedule" << endl;
-	cout << "\t8. Employee Schedule" << endl;
+	cout << "\t8. Performance Tracker" << endl;
 	cout << "\t9. Exit" << endl;
 	cout << "\t>";
 }

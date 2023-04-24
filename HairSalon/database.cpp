@@ -269,3 +269,27 @@ void Database::saveScheduleDataToFileHelper(Schedule* node, ofstream& outfile) {
 }
 
 
+void Database::saveEmployeeMetricsToFile(map<string, double>& employeeMetrics, const string& fileName) {
+	ofstream fileOut(fileName);
+
+	for (auto& pair : employeeMetrics) {
+		fileOut << pair.first << " " << pair.second << endl;
+	}
+
+	fileOut.close();
+}
+
+void Database::loadEmployeeMetricsFromFile(map<string, double>& employeeMetrics, const string& fileName) {
+	ifstream fileIn(fileName);
+
+	string employeeName;
+	double metricValue;
+	while (fileIn >> employeeName >> metricValue) {
+		employeeMetrics[employeeName] = metricValue;
+	}
+
+	fileIn.close();
+}
+
+
+
