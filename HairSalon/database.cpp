@@ -5,7 +5,7 @@ using namespace std;
 void Database::readCustomersFromFile(BST& customers, const string& filename) {
 	ifstream infile(filename);
 	if (!infile) {
-		cerr << "Error opening file " << filename << endl;
+		cerr << "\nError opening file " << filename << endl;
 		return;
 	}
 	string line;
@@ -24,7 +24,7 @@ void Database::readCustomersFromFile(BST& customers, const string& filename) {
 void Database::storeCustomersToFile(BST& customers, const string& filename) {
 	ofstream outfile(filename);
 	if (!outfile.is_open()) {
-		cerr << "Error: could not open file " << filename << " for writing" << endl;
+		cerr << "\nError: could not open file " << filename << " for writing" << endl;
 		return;
 	}
 
@@ -38,7 +38,7 @@ void Database::storeCustomersToFile(BST& customers, const string& filename) {
 void Database::readAppointmentsFromFile(priority_queue<Appointment, vector<Appointment>, greater<Appointment>>& appointments, const string& filename) {
 	ifstream infile(filename);
 	if (!infile) {
-		cerr << "Error opening file " << filename << endl;
+		cerr << "\nError opening file " << filename << endl;
 		return;
 	}
 	string line;
@@ -58,7 +58,7 @@ void Database::readAppointmentsFromFile(priority_queue<Appointment, vector<Appoi
 void Database::storeAppointmentsToFile(priority_queue<Appointment, vector<Appointment>, greater<Appointment>>& appointments, const string& filename) {
 	ofstream outfile(filename);
 	if (!outfile.is_open()) {
-		cerr << "Error: could not open file " << filename << " for writing" << endl;
+		cerr << "\nError: could not open file " << filename << " for writing" << endl;
 		return;
 	}
 
@@ -75,7 +75,7 @@ void Database::storeAppointmentsToFile(priority_queue<Appointment, vector<Appoin
 void Database::readInventoryFromFile(vector<InventoryItem>& inventory, const string& filename) {
 	ifstream infile(filename);
 	if (!infile) {
-		cerr << "Error opening file " << filename << endl;
+		cerr << "\nError opening file " << filename << endl;
 		return;
 	}
 	string line;
@@ -102,7 +102,7 @@ void Database::readInventoryFromFile(vector<InventoryItem>& inventory, const str
 void Database::storeInventoryToFile(vector<InventoryItem>& inventory, const string& filename) {
 	ofstream outfile(filename);
 	if (!outfile.is_open()) {
-		cerr << "Error: could not open file " << filename << " for writing" << endl;
+		cerr << "\nError: could not open file " << filename << " for writing" << endl;
 		return;
 	}
 
@@ -118,7 +118,7 @@ void Database::storeInventoryToFile(vector<InventoryItem>& inventory, const stri
 void Database::storeSalesToFile(queue<Sale>& sales, const string& filename) {
 	ofstream outfile(filename);
 	if (!outfile.is_open()) {
-		cerr << "Error: could not open file " << filename << " for writing" << endl;
+		cerr << "\nError: could not open file " << filename << " for writing" << endl;
 		return;
 	}
 
@@ -134,7 +134,7 @@ void Database::storeSalesToFile(queue<Sale>& sales, const string& filename) {
 void Database::readSalesFromFile(queue<Sale>& sales, const string& filename) {
 	ifstream infile(filename);
 	if (!infile) {
-		cerr << "Error opening file " << filename << endl;
+		cerr << "\nError opening file " << filename << endl;
 		return;
 	}
 	string line;
@@ -159,7 +159,7 @@ void Database::readSalesFromFile(queue<Sale>& sales, const string& filename) {
 void Database::storeWaitingToFile(stack<Waiting>& waiting, const string& filename) {
 	ofstream outfile(filename);
 	if (!outfile.is_open()) {
-		cerr << "Error: could not open file " << filename << " for writing" << endl;
+		cerr << "\nError: could not open file " << filename << " for writing" << endl;
 		return;
 	}
 
@@ -176,7 +176,7 @@ void Database::storeWaitingToFile(stack<Waiting>& waiting, const string& filenam
 void Database::readWaitingFromFile(stack<Waiting>& waiting, const string& filename) {
 	ifstream infile(filename);
 	if (!infile) {
-		cerr << "Error opening file " << filename << endl;
+		cerr << "\nError opening file " << filename << endl;
 		return;
 	}
 	string line;
@@ -228,4 +228,44 @@ void Database::loadLoyaltyPointFromFile(unordered_map<string, int>& loyaltyData,
 		infile.close();
 	}
 }
+
+
+void Database::saveScheduleDataToFile(AVLTree& tree, const string& filename) {
+	ofstream outfile(filename);
+	if (outfile) {
+		Schedule* root = tree.getRoot();
+		saveScheduleDataToFileHelper(root, outfile);
+		outfile.close();
+	}
+	else {
+		cerr << "\nUnable to open file for writing: " << filename << endl;
+	}
+}
+
+void Database::loadScheduleDataFromFile(AVLTree& tree, const string& filename) {
+
+	ifstream infile(filename);
+	if (infile) {
+		string line;
+		while (getline(infile, line)) {
+			stringstream ss(line);
+			string timeSlot, employeeName;
+			ss >> timeSlot >> employeeName;
+			tree.setRoot(tree.insert(tree.getRoot(), timeSlot, employeeName));
+		}
+		infile.close();
+	}
+	else {
+		cerr << "\nUnable to open file for reading: " << filename << endl;
+	}
+}
+
+void Database::saveScheduleDataToFileHelper(Schedule* node, ofstream& outfile) {
+	if (node != nullptr) {
+		saveScheduleDataToFileHelper(node->left, outfile);
+		outfile << node->timeSlot << " " << node->employeeName << endl;
+		saveScheduleDataToFileHelper(node->right, outfile);
+	}
+}
+
 

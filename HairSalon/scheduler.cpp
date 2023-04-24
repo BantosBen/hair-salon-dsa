@@ -2,7 +2,7 @@
 
 Scheduler::Scheduler()
 {
-	tree = new AVLTree;
+    database.loadScheduleDataFromFile(tree, filename);
 }
 
 void Scheduler::run()
@@ -20,23 +20,25 @@ void Scheduler::run()
             cin >> timeSlot;
             cout << "Enter employee name: ";
             cin >> employeeName;
-            result = tree->insert(tree->getRoot(), timeSlot, employeeName);
+            result = tree.insert(tree.getRoot(), timeSlot, employeeName);
 
             if (result != nullptr) {
-                tree->setRoot(result);
+                tree.setRoot(result);
                 cout << "\nEmployee schedule added successfully!" << endl;
+                database.saveScheduleDataToFile(tree, filename);
             }
             break;
         case 2:
             cout << "\nEnter time slot to remove (e.g. 9:00am-10:00am): ";
             cin >> timeSlot;
-            tree->remove(tree->getRoot(), timeSlot);
+            tree.remove(tree.getRoot(), timeSlot);
             cout << "Employee schedule removed successfully!" << endl;
+            database.saveScheduleDataToFile(tree, filename);
             break;
         case 3:
             cout << "Enter time slot to search (e.g. 9:00am-10:00am): ";
             cin >> timeSlot;
-            result = tree->search(timeSlot);
+            result = tree.search(timeSlot);
             if (result == nullptr) {
                 cout << "\nEmployee schedule not found!" << endl;
             }
@@ -44,6 +46,7 @@ void Scheduler::run()
                 cout << "\nEmployee schedule found\n___________________________________" << endl;
                 cout << "Time Slot: " << result->timeSlot << endl;
                 cout << "Employee Name: " << result->employeeName << endl;
+                cout << "___________________________________"<<endl;
             }
             break;
         case 4:

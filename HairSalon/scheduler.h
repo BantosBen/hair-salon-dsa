@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "avltree.h"
+#include "database.h"
 
 using namespace std;
 
@@ -12,6 +13,8 @@ public:
 	void run();
 
 private:
-	AVLTree* tree;
+	string filename = "schedule.txt";
+	Database database;
+	AVLTree tree;
 	void menu();
 };

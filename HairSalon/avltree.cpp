@@ -176,7 +176,6 @@ Schedule* AVLTree::minValueNode(Schedule* node) {
 Schedule* AVLTree::search(string timeSlot) {
 	Schedule* current = root;
 	while (current != nullptr) {
-		cout << "Time Slot: " << current->timeSlot << endl;
 		if (timeSlot == current->timeSlot) {
 			return current;
 		}

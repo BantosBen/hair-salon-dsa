@@ -7,6 +7,7 @@
 #include "inventoryitem.h"
 #include "sale.h"
 #include "waiting.h"
+#include "avltree.h"
 #include <vector>
 #include <fstream>
 #include <iostream>
@@ -35,4 +36,8 @@ public:
 
 	void saveLoyaltyPointsToFile(unordered_map<string, int>& loyaltyData, const string& filename);
 	void loadLoyaltyPointFromFile(unordered_map<string, int>& loyaltyData, const string& filename);
+
+	void saveScheduleDataToFile(AVLTree& tree, const string& filename);
+	void loadScheduleDataFromFile(AVLTree& tree, const string& filename);
+	void saveScheduleDataToFileHelper(Schedule* node, ofstream& outfile);
 };
